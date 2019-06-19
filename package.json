@@ -4,10 +4,16 @@
   "description": "event-sourcerer client",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -La @hapi/code -t 100"
   },
   "keywords": [
     "event sourcing"
   ],
-  "author": ""
+  "author": "",
+  "dependencies": {
+    "@hapi/code": "5.x.x",
+    "eslint-config-hapi": "12.x.x",
+    "eslint-plugin-hapi": "4.x.x",
+    "@hapi/lab": "19.x.x"
+  }
 }
