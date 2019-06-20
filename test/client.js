@@ -3,7 +3,7 @@
 const Code = require('@hapi/code');
 const Lab = require('@hapi/lab');
 
-const Client = require('../index');
+const Client = require('../lib/client');
 
 const lab = exports.lab = Lab.script();
 const { it, describe } = lab;

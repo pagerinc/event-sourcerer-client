@@ -2,7 +2,7 @@
   "name": "event-sourcerer-client",
   "version": "0.0.1",
   "description": "event-sourcerer client",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "lab -La @hapi/code -t 100"
   },
@@ -11,9 +11,15 @@
   ],
   "author": "",
   "dependencies": {
+    "@hapi/joi": "15.x.x",
+    "@pager/jackrabbit": "4.x.x",
+    "@pager/logger": "5.x.x"
+  },
+  "devDependencies": {
     "@hapi/code": "5.x.x",
+    "@hapi/lab": "19.x.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x.x",
-    "@hapi/lab": "19.x.x"
+    "sinon": "7.x.x"
   }
 }
