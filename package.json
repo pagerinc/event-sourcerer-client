@@ -4,7 +4,7 @@
   "description": "event-sourcerer client",
   "main": "lib/index.js",
   "scripts": {
-    "test": "lab -La @hapi/code -t 100"
+    "test": "lab"
   },
   "keywords": [
     "event sourcing"
@@ -21,5 +21,10 @@
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x.x",
     "sinon": "7.x.x"
+  },
+  "renovate": {
+    "extends": [
+      "github>pagerinc/renovate-config"
+    ]
   }
 }

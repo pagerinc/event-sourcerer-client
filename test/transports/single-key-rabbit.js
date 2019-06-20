@@ -15,17 +15,19 @@ describe('event sourcing client rabbit transport', () => {
     it('should publish to rabbit', () => {
 
         const publish = Sinon.fake();
+        const info = Sinon.fake();
         const rabbit = {
             topic: () => ({ publish })
         };
         const transport = new RabbitTransport(rabbit, {
             exchangeName: 'events'
-        });
+        }, { info });
 
         transport.publish('chats', 'xyz', 'created', {
             id: 1
         });
 
+        expect(info.calledOnce).to.equal(true);
         expect(publish.calledOnce).to.equal(true);
         expect(publish.getCall(0).args).to.equal([
             { id: 1, stream: 'chats', streamId: 'xyz', eventType: 'created' },
