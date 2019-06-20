@@ -13,7 +13,7 @@
   "dependencies": {
     "@hapi/joi": "15.x.x",
     "@pager/jackrabbit": "4.x.x",
-    "@pager/logger": "^5.1.1"
+    "@pager/logger": "5.x.x"
   },
   "devDependencies": {
     "@hapi/code": "5.x.x",
