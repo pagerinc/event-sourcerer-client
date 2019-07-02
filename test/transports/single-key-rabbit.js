@@ -30,7 +30,7 @@ describe('event sourcing client rabbit transport', () => {
         expect(info.calledOnce).to.equal(true);
         expect(publish.calledOnce).to.equal(true);
         expect(publish.getCall(0).args).to.equal([
-            { id: 1, stream: 'chats', streamId: 'xyz', eventType: 'created' },
+            { data: { id: 1 }, stream: 'chats', streamId: 'xyz', eventType: 'created' },
             { key: 'events.chats.created' }
         ]);
     });
