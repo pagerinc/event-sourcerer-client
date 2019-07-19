@@ -20,21 +20,23 @@ describe('event sourcing client rabbit transport', () => {
 
         await transport.publish('chats', 'xyz', 'created', {
             id: 1
-        });
+        }, 'my-id');
 
         expect(transport1.publish.calledOnce).to.equal(true);
         expect(transport1.publish.getCall(0).args).to.equal([
             'chats',
             'xyz',
             'created',
-            { id: 1 }
+            { id: 1 },
+            'my-id'
         ]);
         expect(transport2.publish.calledOnce).to.equal(true);
         expect(transport2.publish.getCall(0).args).to.equal([
             'chats',
             'xyz',
             'created',
-            { id: 1 }
+            { id: 1 },
+            'my-id'
         ]);
     });
 });

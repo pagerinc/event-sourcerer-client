@@ -21,12 +21,12 @@ describe('event sourcing client rabbit transport', () => {
 
         await transport.publish('chats', 'xyz', 'created', {
             id: 1
-        });
+        }, 'my-id');
 
         expect(info.calledOnce).to.equal(true);
         expect(publish.calledOnce).to.equal(true);
         expect(publish.getCall(0).args).to.equal([
-            { data: { id: 1 }, stream: 'chats', streamId: 'xyz', eventType: 'created' },
+            { data: { id: 1 }, stream: 'chats', streamId: 'xyz', eventType: 'created', eventId: 'my-id' },
             { key: 'events.chats.created' }
         ]);
     });
