@@ -11,7 +11,6 @@
   ],
   "author": "",
   "dependencies": {
-    "@hapi/joi": "15.x.x",
     "@pager/jackrabbit": "4.x.x",
     "@pager/logger": "5.x.x"
   },
