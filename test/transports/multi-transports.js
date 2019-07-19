@@ -12,13 +12,13 @@ const expect = Code.expect;
 
 describe('event sourcing client rabbit transport', () => {
 
-    it('should publish to all transports', () => {
+    it('should publish to all transports', async () => {
 
         const transport1 = { publish: Sinon.fake() };
         const transport2 = { publish: Sinon.fake() };
         const transport = new Transport([transport1, transport2]);
 
-        transport.publish('chats', 'xyz', 'created', {
+        await transport.publish('chats', 'xyz', 'created', {
             id: 1
         });
 

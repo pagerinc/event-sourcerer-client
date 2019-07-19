@@ -16,7 +16,7 @@ describe('event sourcing client', () => {
         expect(typeof Client).to.equal('function');
     });
 
-    it('should delegate publishing to configured transport', () => {
+    it('should delegate publishing to configured transport', async () => {
 
         const stream = 'chats';
         const eventType = 'chatCreated';
@@ -31,7 +31,7 @@ describe('event sourcing client', () => {
         };
         const client = new Client(transport);
 
-        expect(client.publish(stream, eventType, data)).to.equal({
+        expect(await client.publish(stream, eventType, data)).to.equal({
             stream, eventType, data
         });
     });
