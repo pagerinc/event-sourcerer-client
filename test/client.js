@@ -2,6 +2,7 @@
 
 const Code = require('@hapi/code');
 const Lab = require('@hapi/lab');
+const Sinon = require('sinon');
 
 const Client = require('../lib/client');
 
@@ -16,23 +17,59 @@ describe('event sourcing client', () => {
         expect(typeof Client).to.equal('function');
     });
 
-    it('should delegate publishing to configured transport', () => {
+    it('should delegate publishing to configured transport', async () => {
 
         const stream = 'chats';
+        const streamId = '123';
         const eventType = 'chatCreated';
         const data = { key: 'value' };
-
+        const generator = Sinon.fake(() => 'special-id');
         const transport = {
-            publish: (_stream, _eventType, _data) => ({
-                stream: _stream,
-                eventType: _eventType,
-                data: _data
-            })
+            publish: Sinon.fake()
         };
+
+        const client = new Client(transport, generator);
+
+        await client.publish(stream, streamId, eventType, data);
+        expect(transport.publish.calledOnce).to.equal(true);
+        expect(transport.publish.getCall(0).args).to.equal([
+            stream,
+            streamId,
+            eventType,
+            data,
+            'special-id'
+        ]);
+    });
+
+    it('should generate uuid if no generator supplied', async () => {
+
+        const stream = 'chats';
+        const streamId = '123';
+        const eventType = 'chatCreated';
+        const data = { key: 'value' };
+        const transport = {
+            publish: Sinon.fake()
+        };
+
         const client = new Client(transport);
 
-        expect(client.publish(stream, eventType, data)).to.equal({
-            stream, eventType, data
-        });
+        await client.publish(stream, streamId, eventType, data);
+        expect(transport.publish.getCall(0).args[4]).to.match(/[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/);
+    });
+
+    it('should use eventid argument if passed', async () => {
+
+        const stream = 'chats';
+        const streamId = '123';
+        const eventType = 'chatCreated';
+        const data = { key: 'value' };
+        const transport = {
+            publish: Sinon.fake()
+        };
+
+        const client = new Client(transport);
+
+        await client.publish(stream, streamId, eventType, data, 'passed-id');
+        expect(transport.publish.getCall(0).args[4]).to.equal('passed-id');
     });
 });

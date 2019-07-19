@@ -12,29 +12,31 @@ const expect = Code.expect;
 
 describe('event sourcing client rabbit transport', () => {
 
-    it('should publish to all transports', () => {
+    it('should publish to all transports', async () => {
 
         const transport1 = { publish: Sinon.fake() };
         const transport2 = { publish: Sinon.fake() };
         const transport = new Transport([transport1, transport2]);
 
-        transport.publish('chats', 'xyz', 'created', {
+        await transport.publish('chats', 'xyz', 'created', {
             id: 1
-        });
+        }, 'my-id');
 
         expect(transport1.publish.calledOnce).to.equal(true);
         expect(transport1.publish.getCall(0).args).to.equal([
             'chats',
             'xyz',
             'created',
-            { id: 1 }
+            { id: 1 },
+            'my-id'
         ]);
         expect(transport2.publish.calledOnce).to.equal(true);
         expect(transport2.publish.getCall(0).args).to.equal([
             'chats',
             'xyz',
             'created',
-            { id: 1 }
+            { id: 1 },
+            'my-id'
         ]);
     });
 });

@@ -12,44 +12,22 @@ const expect = Code.expect;
 
 describe('event sourcing client rabbit transport', () => {
 
-    it('should publish to rabbit', () => {
+    it('should publish to rabbit', async () => {
 
         const publish = Sinon.fake();
+        const publisher = { publish };
         const info = Sinon.fake();
-        const rabbit = {
-            topic: () => ({ publish })
-        };
-        const transport = new RabbitTransport(rabbit, {
-            exchangeName: 'events'
-        }, { info });
+        const transport = new RabbitTransport(publisher, { info });
 
-        transport.publish('chats', 'xyz', 'created', {
+        await transport.publish('chats', 'xyz', 'created', {
             id: 1
-        });
+        }, 'my-id');
 
         expect(info.calledOnce).to.equal(true);
         expect(publish.calledOnce).to.equal(true);
         expect(publish.getCall(0).args).to.equal([
-            { data: { id: 1 }, stream: 'chats', streamId: 'xyz', eventType: 'created' },
+            { data: { id: 1 }, stream: 'chats', streamId: 'xyz', eventType: 'created', eventId: 'my-id' },
             { key: 'events.chats.created' }
         ]);
-    });
-
-    it('should throw error if options are not valid', () => {
-
-        const publish = Sinon.fake();
-        const rabbit = {
-            topic: () => ({ publish })
-        };
-
-        try {
-            new RabbitTransport(rabbit, {});
-            Code.fail('transport constructor should throw validation error');
-        }
-        catch (err) {
-            expect(err.isJoi).to.equal(true);
-            expect(err.name).to.equal('ValidationError');
-            expect(err.message).to.equal('child "exchangeName" fails because ["exchangeName" is required]');
-        }
     });
 });
