@@ -4,7 +4,7 @@ const Code = require('@hapi/code');
 const Lab = require('@hapi/lab');
 const Sinon = require('sinon');
 
-const RabbitTransport = require('../../lib/transports/multi-key-rabbit');
+const RabbitTransport = require('../../../lib/transports/multi-key-rabbit');
 
 const lab = exports.lab = Lab.script();
 const { it, describe } = lab;
