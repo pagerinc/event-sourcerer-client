@@ -28,7 +28,8 @@ describe('event sourcing client rabbit transport', () => {
             'xyz',
             'created',
             { id: 1 },
-            'my-id'
+            'my-id',
+            undefined
         ]);
         expect(transport2.publish.calledOnce).to.equal(true);
         expect(transport2.publish.getCall(0).args).to.equal([
@@ -36,7 +37,8 @@ describe('event sourcing client rabbit transport', () => {
             'xyz',
             'created',
             { id: 1 },
-            'my-id'
+            'my-id',
+            undefined
         ]);
     });
 });
