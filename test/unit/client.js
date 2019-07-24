@@ -37,7 +37,8 @@ describe('event sourcing client', () => {
             streamId,
             eventType,
             data,
-            'special-id'
+            'special-id',
+            undefined
         ]);
     });
 
