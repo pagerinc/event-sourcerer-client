@@ -11,8 +11,8 @@
   ],
   "author": "",
   "dependencies": {
-    "@pager/jackrabbit": "4.x.x",
-    "@pager/logger": "5.x.x"
+    "@pager/logger": "5.x.x",
+    "uuid": "3.x.x"
   },
   "devDependencies": {
     "@hapi/code": "5.x.x",

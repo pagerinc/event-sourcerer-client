@@ -4,7 +4,7 @@ const Code = require('@hapi/code');
 const Lab = require('@hapi/lab');
 const Sinon = require('sinon');
 
-const Client = require('../lib/client');
+const Client = require('../../lib/client');
 
 const lab = exports.lab = Lab.script();
 const { it, describe } = lab;
