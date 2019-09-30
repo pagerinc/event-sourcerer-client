@@ -93,7 +93,8 @@ describe('event sourcing client', () => {
                     await client.publish(stream, streamId, eventType, payload);
                 }
                 catch (e) {
-                    expect(e).to.equal('validation err');
+                    expect(e).to.not.be.null();
+                    expect(e).to.be.an.error();
                 }
             });
         });
