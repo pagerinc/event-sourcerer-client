@@ -17,10 +17,10 @@
   },
   "devDependencies": {
     "@hapi/code": "6.x.x",
-    "@hapi/lab": "19.x.x",
+    "@hapi/lab": "20.x.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x.x",
-    "sinon": "7.x.x"
+    "sinon": "^7.5.0"
   },
   "renovate": {
     "extends": [
