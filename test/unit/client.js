@@ -55,6 +55,10 @@ describe('event sourcing client', () => {
                 const client = new Client(transport, generator);
 
                 client.addPrePublishValidator(stream, eventType, validJoiSchema);
+
+                expect(client.validateMap.size).to.equal(1);
+                expect(client.validateMap.get(`${stream}:${eventType}`)).to.not.be.null();
+                expect(Joi.isSchema(client.validateMap.get(`${stream}:${eventType}`))).to.be.true();
             });
         });
 
