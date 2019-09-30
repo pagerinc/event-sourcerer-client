@@ -11,7 +11,7 @@
   ],
   "author": "",
   "dependencies": {
-    "@hapi/joi": "^16.1.4",
+    "@hapi/joi": "16.x.x",
     "@pager/logger": "5.x.x",
     "uuid": "3.x.x"
   },
