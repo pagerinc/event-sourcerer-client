@@ -57,7 +57,7 @@ describe('event sourcing client', () => {
             });
         });
 
-        it('should throw if data validation fails for given stream + eventType', () => {
+        it('should throw if data validation fails for given stream + eventType', async () => {
 
             const stream = 'chats';
             const streamId = '123';
@@ -82,16 +82,9 @@ describe('event sourcing client', () => {
                 { id: 'abc123', name: 'Test Org', employees: 'one hundred' }
             ];
 
-            invalidPublishPayloads.forEach(async (payload) => {
-
-                try {
-                    await client.publish(stream, streamId, eventType, payload);
-                }
-                catch (e) {
-                    expect(e).to.not.be.null();
-                    expect(e).to.be.an.error();
-                }
-            });
+            for (const payload of invalidPublishPayloads) {
+                await expect(client.publish(stream, streamId, eventType, payload)).to.reject(Error);
+            }
         });
 
         it('should publish if provided valid data for stream + eventType', async () => {
