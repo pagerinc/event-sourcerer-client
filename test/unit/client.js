@@ -34,12 +34,7 @@ describe('event sourcing client', () => {
 
                 const client = new Client(transport, generator);
 
-                try {
-                    client.addPrePublishValidator(stream, eventType, invalidJoiSchema);
-                }
-                catch (e) {
-                    expect(e).to.equal(new Error('Invalid Joi schema'));
-                }
+                expect(() => client.addPrePublishValidator(stream, eventType, invalidJoiSchema)).to.throw(Error, 'Invalid Joi schema');
             });
 
             it('should register schema for stream + eventType if provided valid Joi schema', () => {
