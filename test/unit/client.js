@@ -22,6 +22,22 @@ describe('event sourcing client', () => {
 
         describe('addPrePublishValidator', () => {
 
+            it('should throw if missing stream or eventType', () => {
+
+                const stream = 'chats';
+                const eventType = 'chatCreated';
+                const generator = Sinon.fake(() => 'special-id');
+                const transport = {
+                    publish: Sinon.fake()
+                };
+                const validJoiSchema = Joi.any();
+
+                const client = new Client(transport, generator);
+
+                expect(() => client.addPrePublishValidator(null, eventType, validJoiSchema)).to.throw(Error, 'Invalid stream or eventType');
+                expect(() => client.addPrePublishValidator(stream, null, validJoiSchema)).to.throw(Error, 'Invalid stream or eventType');
+            });
+
             it('should throw if provided invalid joi schema', () => {
 
                 const stream = 'chats';
