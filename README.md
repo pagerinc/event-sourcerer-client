@@ -1,7 +1,7 @@
 # event-sourcerer-client
 Event Sourcing client
 
-This client would be in charge of handling publishing of events to the event sourcing service. 
+This client would be in charge of handling publishing of events to the event sourcing service.
 
 The intent is for this client to be an abstraction over whatever protocol/transport/service we decide to use for event publishing and consumption.
 
@@ -36,6 +36,15 @@ client.publish(stream, streamId, eventType, data)
 #### `Client(transport)`
 
 - `transport` - an instance of an object with a publish function that implements actual publishing of messages.
+
+#### `addPrePublishValidator(stream, eventType, schema)`
+
+Adds pre-publish payload validation.
+- `stream` - Name identifying the type of the stream, the stream is the category name to which we publish messages, analog to a model/entity name.
+- `eventType` - Name of the event.
+- `schema` - any valid Joi schema - will throw if invalid schema provided
+
+After using this function, all publish payloads with this stream + eventType will be validated against the provided schema. Invalid payloads will throw a Joi validation error.
 
 #### `publish(stream, streamId, eventType, data)`
 
