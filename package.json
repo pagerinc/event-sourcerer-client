@@ -1,6 +1,6 @@
 {
   "name": "@pager/event-sourcerer-client",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "event-sourcerer client",
   "main": "lib/index.js",
   "scripts": {
@@ -11,8 +11,8 @@
   ],
   "author": "",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/pagerinc/event-sourcerer-client.git"
+    "type": "git",
+    "url": "https://github.com/pagerinc/event-sourcerer-client.git"
   },
   "dependencies": {
     "@hapi/joi": "16.x.x",
