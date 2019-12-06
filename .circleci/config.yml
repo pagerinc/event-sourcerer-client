@@ -4,7 +4,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:12.13@sha256:5cf5f2ec77cd098cd0cfaf19ab800decfd62a6bfdc4ddd5b175c3b1587e9e8f8
+    - image: circleci/node:12.13@sha256:d2d1d37f81477011b8802d40f2fdcfb64fa6b48afe9bf7b578f179447a9b9216
 
 jobs:
   test:
