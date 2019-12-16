@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@hapi/joi": "16.x",
-    "@pager/logger": "5.x.x",
+    "@pager/logger": "5.x",
     "uuid": "3.x.x"
   },
   "devDependencies": {
