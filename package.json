@@ -21,10 +21,10 @@
   },
   "devDependencies": {
     "@hapi/code": "7.x",
-    "@hapi/lab": "21.x",
+    "@hapi/lab": "22.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x",
-    "sinon": "7.x"
+    "sinon": "8.x"
   },
   "renovate": {
     "extends": [
