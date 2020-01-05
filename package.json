@@ -20,7 +20,7 @@
     "uuid": "3.x"
   },
   "devDependencies": {
-    "@hapi/code": "7.x",
+    "@hapi/code": "8.x",
     "@hapi/lab": "22.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x",
