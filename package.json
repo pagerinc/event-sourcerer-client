@@ -15,7 +15,7 @@
     "url": "https://github.com/pagerinc/event-sourcerer-client.git"
   },
   "dependencies": {
-    "@hapi/joi": "16.x",
+    "@hapi/joi": "17.x",
     "@pager/logger": "5.x",
     "uuid": "3.x"
   },
