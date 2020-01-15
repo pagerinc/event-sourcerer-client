@@ -1,0 +1,71 @@
+---
+kind: pipeline
+type: kubernetes
+name: test
+
+services:
+- name: mongo
+  pull: if-not-exists
+  image: mongo:4.2.2-bionic@sha256:6b0722ea9876f3ec2210c80d999d262375eb792d9d2fc3a9bd8e4b69af541dc5
+
+- name: redis
+  pull: if-not-exists
+  image: redis:4-alpine@sha256:73c82ede3e0a3786ad0b490a1dc93b38f051d1440c8bb9fe86d1438fbe8e5a5e
+
+- name: rabbitmq
+  pull: if-not-exists
+  image: rabbitmq:3.8.2-alpine@sha256:f0bc27fe34c70bfffa72ae4a1fe80c0c65f7d88987ab5640c8ddeeec9e10f54c
+
+- name: postgres
+  pull: if-not-exists
+  image: postgres:11.6-alpine@sha256:9e85b7e30837e267c93e9a677860b863bc78fe0bc013441f09042845feacc09e
+
+steps:
+- name: check-docker
+  image: hadolint/hadolint:v1.17.3-debian@sha256:9bf3695c7116d45888c5bcab779b7b1c45a3ce3f5518e1e7f4b6e19b85a1c4a1
+  pull: if-not-exists
+  commands:
+  - hadolint Dockerfile
+  when:
+    event:
+    - pull_request
+
+- name: check-yaml
+  image: pagerinc/cloud-sdk:2.5.0@sha256:20aa5ad1e20805ddf918b1a97843d3e18843b7cfe2982f111e6bbe037324fa92
+  commands:
+  - yamllint -d relaxed .
+  when:
+    event:
+    - pull_request
+
+- name: test
+  image: node:12.14-slim@sha256:755ce45a1f078e2e6551729848c2a9f26ac6a1e4c8f7b27a06b8c4b6230a6594
+  environment:
+    NODE_ENV: test
+    NPM_TOKEN:
+      from_secret: npm-token
+  commands:
+  - npm audit
+  - apt-get update
+  - apt-get install -y g++ gcc make python
+  - npm ci --quiet
+  - npm test
+  when:
+    event:
+    - push
+    - pull_request
+
+---
+kind: secret
+name: npm-token
+get:
+  path: drone-npm-token-ro
+  name: npm-token
+---
+kind: secret
+name: gcr_creds
+get:
+  path: drone-gcr-creds
+  name: password
+
+...

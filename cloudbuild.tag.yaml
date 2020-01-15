@@ -1,0 +1,31 @@
+steps:
+- id: docker-build
+  name: 'gcr.io/cloud-builders/docker'
+  secretEnv: ['NPM_TOKEN']
+  args: ['build',
+         '--build-arg',
+         'NPM_TOKEN',
+         '--build-arg',
+         'VCS_REF=${SHORT_SHA}',
+         '--build-arg',
+         'VERSION=${REVISION_ID}',
+         '-t',
+         'gcr.io/${PROJECT_ID}/pagerinc/${REPO_NAME}:${SHORT_SHA}',
+         '-t',
+         'gcr.io/${PROJECT_ID}/pagerinc/${REPO_NAME}:${TAG_NAME}',
+         '.']
+
+images:
+- 'gcr.io/${PROJECT_ID}/pagerinc/${REPO_NAME}'
+
+timeout: 10m
+
+tags:
+- 'backend'
+- 'docker'
+- 'nodejs'
+
+secrets:
+- kmsKeyName: projects/production-197117/locations/global/keyRings/gcb/cryptoKeys/main
+  secretEnv:
+    NPM_TOKEN: 'CiQA/4lqmSmbkRg4oDX8wufZ8LeZRIUXkvHez16bCSGKQOVGtAQSTQC7Kyfr/tcdiXzqRNkQVsjpWLDnBEmh0TD/Jli8/D6WrJlTwHhYO30Hn7B9jYPCh8+HLXj39Ip07HZj7ir/rViSpjPYm3Nrk1zsWOAs'
