@@ -9,7 +9,6 @@
   "keywords": [
     "event sourcing"
   ],
-  "author": "",
   "repository": {
     "type": "git",
     "url": "https://github.com/pagerinc/event-sourcerer-client.git"
@@ -29,6 +28,9 @@
   "renovate": {
     "extends": [
       "github>pagerinc/renovate-config"
-    ]
+    ],
+    "lockFileMaintenance": {
+      "enabled": false
+    }
   }
 }
