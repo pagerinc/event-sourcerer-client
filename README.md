@@ -9,7 +9,7 @@ The intent is for this client to be an abstraction over whatever protocol/transp
 
 - Require and Initialize
 ```javascript
-const Jackrabbit = require('jackrabbit');
+const Jackrabbit = require('@pager/jackrabbit');
 const EventSourcerer = require('@pager/event-sourcerer-client');
 const Client = EventSourcerer.Client;
 const SingleKeyRabbitTransport = EventSourcerer.transports.SingleKeyRabbit;
