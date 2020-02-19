@@ -23,7 +23,7 @@
     "@hapi/lab": "22.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x",
-    "sinon": "8.x"
+    "sinon": "9.x"
   },
   "renovate": {
     "extends": [
