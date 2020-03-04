@@ -18,6 +18,33 @@ describe('event sourcing client', () => {
         expect(typeof Client).to.equal('function');
     });
 
+    it('should setup default transport', async () => {
+
+        const publisher = {
+            publish: Sinon.stub()
+        };
+        const generator = Sinon.stub();
+        const id = 'abc';
+        generator.returns(id);
+
+        const sut = Client.default(publisher, generator);
+        await sut.publish('stream', 1, 'type', { my: 'data' });
+        expect(publisher.publish.calledOnce).to.be.true();
+        expect(publisher.publish.getCall(0).args).to.equal([
+            {
+                data: { my: 'data' },
+                stream: 'stream',
+                streamId: 1,
+                eventType: 'type',
+                asOf: undefined,
+                eventId: id
+            },
+            {
+                key: `events.stream.created`
+            }
+        ]);
+    });
+
     describe('validation', () => {
 
         describe('addPrePublishValidator', () => {

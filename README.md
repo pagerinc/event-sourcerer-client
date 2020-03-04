@@ -9,24 +9,33 @@ The intent is for this client to be an abstraction over whatever protocol/transp
 
 - Require and Initialize
 ```javascript
+// Default configuration
+const Jackrabbit = require('@pager/jackrabbit');
+const { Client } = require('@pager/event-sourcerer-client');
+const exchange = Jackrabbit('amqp://localhost').topic('sourcerer');
+const client = Client.default(exchange);
+```
+
+```javascript
+// Manual setup
 const Jackrabbit = require('@pager/jackrabbit');
 const EventSourcerer = require('@pager/event-sourcerer-client');
 const Client = EventSourcerer.Client;
 const SingleKeyRabbitTransport = EventSourcerer.transports.SingleKeyRabbit;
 
-const rabbit = Jackrabbit('amqp://localhost')
-const transport = new SingleKeyRabbit(rabbit, { exchangeName: 'pager' })
-const client = new Client(transport)
+const exchange = Jackrabbit('amqp://localhost').topic('sourcerer');
+const transport = new SingleKeyRabbit(exchange);
+const client = new Client(transport);
 ```
 
 - Just use it to publish
 ```javascript
-const stream = 'chats'
-const streamId = '123456'
-const eventType = 'created'
-const data = { 'name': 'my chat' }
+const stream = 'chats';
+const streamId = '123456';
+const eventType = 'created';
+const data = { 'name': 'my chat' };
 
-client.publish(stream, streamId, eventType, data)
+client.publish(stream, streamId, eventType, data);
 ```
 
 ## API Reference
@@ -59,28 +68,21 @@ After using this function, all publish payloads with this stream + eventType wil
 
 This transport can be used to publish messages to a RabbitMQ instance, under a single key by stream. The key being `events.{stream}.created`.
 
-##### `SingleKeyRabbitTransport(rabbitConnection, options)`
+##### `SingleKeyRabbitTransport(publisher, metadata, logger)`
 
-- `rabbit` - Configured connection to rabbit, as the one returned by `@pager/jackrabbit` or a compatible one.
-- `options` - settings:
-    - `exchangeName` - name of the RabbitMQ exchange. Required.
-    - `exchangeType` - Type of exchange. Optional. Possible values: `topic`, `default`. Defaults to `topic`
+- `publisher` (required) - Configured rabbit exchange, as the one returned by `@pager/jackrabbit`'s `.topic()` or `.default()`. Any publisher with a compatible interface will work
+- `metadata` - additional published metadata added on to the options param of `publisher.publish`
+- `logger` - optional override for default logger
 
 #### MultiKeyRabbitTransport
 
 This transport can be used to publish messages to a RabbitMQ instance, where every event is published to it's own key. The key being `{stream}.{eventType}`.
 
-##### `MultiKeyRabbitTransport(rabbitConnection, options)`
+##### `MultiKeyRabbitTransport(publisher, options)`
 
-- `rabbit` - Configured connection to rabbit, as the one returned by `@pager/jackrabbit` or a compatible one.
-- `options` - settings:
-    - `exchangeName` - name of the RabbitMQ exchange. Required.
-    - `exchangeType` - Type of exchange. Optional. Possible values: `topic`, `default`. Defaults to `topic`
+- `publisher` - Configured rabbit exchange, as the one returned by `@pager/jackrabbit`'s `.topic()` or `.default()`. Any publisher with a compatible interface will work
+- `logger` - optional override for default logger
 
 #### MultiTransport
 
 This transport can be used to publish messages to a RabbitMQ instance, under a single key by stream. The key being `events.{stream}.created`.
-
-##### `SingleKeyRabbitTransport(rabbitConnection, options)`
-
-- `rabbit` - Configured connection to rabbit, as the one returned by `@pager/jackrabbit` or a compatible one.
