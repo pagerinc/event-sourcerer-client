@@ -21,8 +21,10 @@
   "devDependencies": {
     "@hapi/code": "8.x",
     "@hapi/lab": "22.x",
+    "@pager/semantic-release-config": "1.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x",
+    "semantic-release": "17.x",
     "sinon": "9.x"
   },
   "renovate": {
@@ -32,5 +34,8 @@
     "lockFileMaintenance": {
       "enabled": false
     }
+  },
+  "release": {
+    "extends": "@pager/semantic-release-config"
   }
 }
