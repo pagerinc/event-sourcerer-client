@@ -1,3 +1,5 @@
+## [3.1.6](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.5...v3.1.6) (2020-03-09)
+
 ## [3.1.5](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.4...v3.1.5) (2020-03-07)
 
 ## [3.1.4](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.3...v3.1.4) (2020-03-06)
