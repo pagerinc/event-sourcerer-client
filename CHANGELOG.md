@@ -1,3 +1,10 @@
+## [3.1.7](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.6...v3.1.7) (2020-04-22)
+
+
+### Bug Fixes
+
+* throw if stream id is not set on publish ([#177](https://github.com/pagerinc/event-sourcerer-client/issues/177)) ([ddbfae7](https://github.com/pagerinc/event-sourcerer-client/commit/ddbfae7c5316846f20f25895e3ddd3177b350824))
+
 ## [3.1.6](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.5...v3.1.6) (2020-03-09)
 
 ## [3.1.5](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.4...v3.1.5) (2020-03-07)
