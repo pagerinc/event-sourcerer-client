@@ -45,6 +45,19 @@ describe('event sourcing client', () => {
         ]);
     });
 
+    it('should throw if streamId is set to null', async () => {
+
+        const publisher = {
+            publish: Sinon.stub()
+        };
+        const generator = Sinon.stub();
+        const id = 'abc';
+        generator.returns(id);
+
+        const sut = Client.default(publisher, generator);
+        await expect(sut.publish('stream', null, 'type', { my: 'data' })).to.reject(Error);
+    });
+
     describe('validation', () => {
 
         describe('addPrePublishValidator', () => {
