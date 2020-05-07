@@ -24,8 +24,18 @@ describe('event sourcing client rabbit transport', () => {
         }, 'my-id');
 
         expect(info.calledOnce).to.equal(true);
-        expect(publish.calledOnce).to.equal(true);
         expect(publish.getCall(0).args).to.equal([
+            {
+                data: {
+                    id: 1
+                }
+            },
+            {
+                key: 'events.persistence'
+            }
+        ]
+        );
+        expect(publish.getCall(1).args).to.equal([
             { data: { id: 1 }, stream: 'chats', streamId: 'xyz', eventType: 'created', eventId: 'my-id', asOf: undefined },
             { key: 'events.chats.created' }
         ]);
@@ -43,8 +53,21 @@ describe('event sourcing client rabbit transport', () => {
         }, 'my-id');
 
         expect(info.calledOnce).to.equal(true);
-        expect(publish.calledOnce).to.equal(true);
         expect(publish.getCall(0).args).to.equal([
+            {
+                data: {
+                    id: 1
+                }
+            },
+            {
+                headers: {
+                    sample: 'metadata'
+                },
+                key: 'events.persistence'
+            }
+        ]
+        );
+        expect(publish.getCall(1).args).to.equal([
             { data: { id: 1 }, stream: 'chats', streamId: 'xyz', eventType: 'created', eventId: 'my-id', asOf: undefined },
             { key: 'events.chats.created', headers: { sample: 'metadata' } }
         ]);
