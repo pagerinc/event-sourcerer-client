@@ -30,6 +30,7 @@ describe('event sourcing client', () => {
         const sut = Client.default(publisher, generator);
         await sut.publish('stream', 1, 'type', { my: 'data' });
 
+        expect(publisher.publish.calledOnce).to.be.true();
         expect(publisher.publish.getCall(0).args).to.equal([
             {
                 data: { my: 'data' },
