@@ -29,18 +29,8 @@ describe('event sourcing client', () => {
 
         const sut = Client.default(publisher, generator);
         await sut.publish('stream', 1, 'type', { my: 'data' });
+
         expect(publisher.publish.getCall(0).args).to.equal([
-            {
-                data: {
-                    my: 'data'
-                }
-            },
-            {
-                key: 'events.persistence'
-            }
-        ]
-        );
-        expect(publisher.publish.getCall(1).args).to.equal([
             {
                 data: { my: 'data' },
                 stream: 'stream',

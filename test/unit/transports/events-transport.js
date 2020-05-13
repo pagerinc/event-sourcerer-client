@@ -10,7 +10,7 @@ const lab = exports.lab = Lab.script();
 const { it, describe } = lab;
 const expect = Code.expect;
 
-describe('event sourcing client rabbit transport', () => {
+describe('events transport', () => {
 
     const args = [
         { id: 1 },
