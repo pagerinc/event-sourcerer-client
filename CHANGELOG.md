@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.7...v3.2.0) (2020-05-15)
+
+
+### Features
+
+* implement new transport ([#189](https://github.com/pagerinc/event-sourcerer-client/issues/189)) ([99c676b](https://github.com/pagerinc/event-sourcerer-client/commit/99c676b750c1a58a6adaa1ef8fb0698bb92c43d9))
+
 ## [3.1.7](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.6...v3.1.7) (2020-04-22)
 
 
