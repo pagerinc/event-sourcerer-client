@@ -32,16 +32,16 @@ describe('event sourcing client', () => {
 
         expect(publisher.publish.calledOnce).to.be.true();
         expect(publisher.publish.getCall(0).args).to.equal([
+            { my: 'data' },
             {
-                data: { my: 'data' },
-                stream: 'stream',
-                streamId: 1,
-                eventType: 'type',
-                asOf: undefined,
-                eventId: id
-            },
-            {
-                key: `events.stream.created`
+                key: 'stream.type',
+                headers: {
+                    stream: 'stream',
+                    streamId: 1,
+                    eventType: 'type',
+                    eventId: 'abc',
+                    asOf: undefined
+                }
             }
         ]);
     });
