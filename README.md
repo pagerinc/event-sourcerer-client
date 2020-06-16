@@ -1,9 +1,9 @@
 # event-sourcerer-client
 Event Sourcing client
 
-This client would be in charge of handling publishing of events to the event sourcing service.
+This client would be in charge of handling publishing of events to other services.
 
-The intent is for this client to be an abstraction over whatever protocol/transport/service we decide to use for event publishing and consumption.
+The intent is for this client to be the vehicle upon which our service broadcasts event-sourced data.
 
 ## Usage Example
 
@@ -12,7 +12,7 @@ The intent is for this client to be an abstraction over whatever protocol/transp
 // Default configuration
 const Jackrabbit = require('@pager/jackrabbit');
 const { Client } = require('@pager/event-sourcerer-client');
-const exchange = Jackrabbit('amqp://localhost').topic('sourcerer');
+const exchange = Jackrabbit('amqp://localhost').topic('events');
 const client = Client.default(exchange);
 ```
 
@@ -21,10 +21,10 @@ const client = Client.default(exchange);
 const Jackrabbit = require('@pager/jackrabbit');
 const EventSourcerer = require('@pager/event-sourcerer-client');
 const Client = EventSourcerer.Client;
-const SingleKeyRabbitTransport = EventSourcerer.transports.SingleKeyRabbit;
+const EventsTransport = EventSourcerer.transports.EventsTransport;
 
-const exchange = Jackrabbit('amqp://localhost').topic('sourcerer');
-const transport = new SingleKeyRabbit(exchange);
+const exchange = Jackrabbit('amqp://localhost').topic('events');
+const transport = new EventsTransport(exchange);
 const client = new Client(transport);
 ```
 
