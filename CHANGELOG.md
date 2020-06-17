@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/pagerinc/event-sourcerer-client/compare/v3.2.0...v4.0.0) (2020-06-17)
+
+
+### Features
+
+* test ([#213](https://github.com/pagerinc/event-sourcerer-client/issues/213)) ([797b24f](https://github.com/pagerinc/event-sourcerer-client/commit/797b24ffea16f93e482d062aed48fc4398354803))
+
+
+### BREAKING CHANGES
+
+* publish schema straight to events exchange by default
+
 # [3.2.0](https://github.com/pagerinc/event-sourcerer-client/compare/v3.1.7...v3.2.0) (2020-05-15)
 
 
