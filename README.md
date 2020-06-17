@@ -58,7 +58,7 @@ After using this function, all publish payloads with this stream + eventType wil
 #### `publish(stream, streamId, eventType, data)`
 
 - `stream` - Name identifying the type of the stream, the stream is the category name to which we publish messages, analog to a model/entity name.
-- `streamId` - Identifier for a particular instance of the stream
+- `streamId` - Identifier for a particular entity of the stream
 - `eventType` - Name of the event.
 - `data` - An object with fields and values for the event
 
