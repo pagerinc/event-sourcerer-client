@@ -40,7 +40,7 @@ describe('event sourcing client', () => {
                 eventId: 'abc',
                 asOf: undefined
             },
-            { key: 'stream.type' }
+            { key: 'stream.type', headers: null }
         ]);
     });
 

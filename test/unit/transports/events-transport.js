@@ -21,7 +21,7 @@ describe('events transport', () => {
             eventId: 'my-id',
             asOf: undefined
         },
-        { key: 'chats.created' }
+        { key: 'chats.created', headers: null }
     ];
 
     it('should publish to rabbit', async () => {
