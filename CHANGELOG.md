@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.2...v4.0.3) (2020-07-10)
+
+
+### Bug Fixes
+
+* correct logic ([#222](https://github.com/pagerinc/event-sourcerer-client/issues/222)) ([a2c46bb](https://github.com/pagerinc/event-sourcerer-client/commit/a2c46bbe3190a3875fcc410e6e3117647141bf8b))
+
 ## [4.0.2](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.1...v4.0.2) (2020-07-10)
 
 
