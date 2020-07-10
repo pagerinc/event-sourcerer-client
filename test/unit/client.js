@@ -37,17 +37,55 @@ describe('event sourcing client', () => {
         expect(publisher.publish.calledOnce).to.be.true();
         expect(publisher.publish.getCall(0).args).to.equal([
             {
-                data: { my: 'data' },
-                stream: 'stream',
-                streamId: 1,
-                eventType: 'type',
+                asOf: undefined,
+                data: {
+                    my: 'data'
+                },
                 eventId: 'abc',
-                asOf: undefined
+                eventType: 'type',
+                stream: 'stream',
+                streamId: 1
             },
-            { key: 'stream.type', headers: null }
-        ]);
+            {
+                headers: null,
+                key: 'stream.type'
+            }
+        ]
+        );
     });
 
+    it('should setup transport', async () => {
+
+        const publisher = {
+            publish: Sinon.stub()
+        };
+        const generator = Sinon.stub();
+        const id = 'abc';
+        generator.returns(id);
+
+        const sut = new Client(new EventsTransport(publisher), generator);
+
+        await sut.publish('stream', 1, 'type', { my: 'data' });
+
+        expect(publisher.publish.calledOnce).to.be.true();
+        expect(publisher.publish.getCall(0).args).to.equal([
+            {
+                asOf: undefined,
+                data: {
+                    my: 'data'
+                },
+                eventId: 'abc',
+                eventType: 'type',
+                stream: 'stream',
+                streamId: 1
+            },
+            {
+                headers: null,
+                key: 'stream.type'
+            }
+        ]
+        );
+    });
     it('should throw if streamId is set to null', async () => {
 
         const publisher = {
