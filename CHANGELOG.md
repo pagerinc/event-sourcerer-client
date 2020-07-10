@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.1...v4.0.2) (2020-07-10)
+
+
+### Bug Fixes
+
+* update default client ([#221](https://github.com/pagerinc/event-sourcerer-client/issues/221)) ([97544c3](https://github.com/pagerinc/event-sourcerer-client/commit/97544c39f8c634e037ba8f352d4210275583847b))
+
 ## [4.0.1](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.0...v4.0.1) (2020-07-09)
 
 
