@@ -11,6 +11,8 @@ const { it, describe } = lab;
 const expect = Code.expect;
 const Joi = require('@hapi/joi');
 
+const EventsTransport = require('../../lib/transports/events-transport');
+
 describe('event sourcing client', () => {
 
     it('should be exported as function', () => {
@@ -27,7 +29,9 @@ describe('event sourcing client', () => {
         const id = 'abc';
         generator.returns(id);
 
-        const sut = Client.default(publisher, generator);
+        const transport = new EventsTransport(publisher);
+
+        const sut = Client.default(transport, generator);
         await sut.publish('stream', 1, 'type', { my: 'data' });
 
         expect(publisher.publish.calledOnce).to.be.true();
