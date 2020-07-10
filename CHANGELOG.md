@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.3...v4.0.4) (2020-07-10)
+
+
+### Bug Fixes
+
+* covert client ([#223](https://github.com/pagerinc/event-sourcerer-client/issues/223)) ([3eca1e4](https://github.com/pagerinc/event-sourcerer-client/commit/3eca1e447930f59d77196fc0210d707a70c47398))
+
 ## [4.0.3](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.2...v4.0.3) (2020-07-10)
 
 

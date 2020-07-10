@@ -1,6 +1,6 @@
 {
   "name": "@pager/event-sourcerer-client",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "event-sourcerer client",
   "main": "lib/index.js",
   "scripts": {
