@@ -54,6 +54,38 @@ describe('event sourcing client', () => {
         );
     });
 
+    it('should setup transport', async () => {
+
+        const publisher = {
+            publish: Sinon.stub()
+        };
+        const generator = Sinon.stub();
+        const id = 'abc';
+        generator.returns(id);
+
+        const sut = new Client(new EventsTransport(publisher), generator);
+
+        await sut.publish('stream', 1, 'type', { my: 'data' });
+
+        expect(publisher.publish.calledOnce).to.be.true();
+        expect(publisher.publish.getCall(0).args).to.equal([
+            {
+                asOf: undefined,
+                data: {
+                    my: 'data'
+                },
+                eventId: 'abc',
+                eventType: 'type',
+                stream: 'stream',
+                streamId: 1
+            },
+            {
+                headers: null,
+                key: 'stream.type'
+            }
+        ]
+        );
+    });
     it('should throw if streamId is set to null', async () => {
 
         const publisher = {
@@ -160,9 +192,7 @@ describe('event sourcing client', () => {
             const data = { id: 'abc123', name: 'Test Org', employees: 100 };
             const generator = Sinon.fake(() => 'special-id');
             const transport = {
-                publisher: {
-                    publish: Sinon.fake()
-                }
+                publish: Sinon.fake()
             };
             const schema = Joi.object({
                 id: Joi.string(),
@@ -174,8 +204,8 @@ describe('event sourcing client', () => {
             client.addPrePublishValidator(stream, eventType, schema);
 
             await client.publish(stream, streamId, eventType, data);
-            expect(transport.publisher.publish.calledOnce).to.equal(true);
-            expect(transport.publisher.publish.getCall(0).args).to.equal([
+            expect(transport.publish.calledOnce).to.equal(true);
+            expect(transport.publish.getCall(0).args).to.equal([
                 stream,
                 streamId,
                 eventType,
@@ -194,16 +224,14 @@ describe('event sourcing client', () => {
         const data = { key: 'value' };
         const generator = Sinon.fake(() => 'special-id');
         const transport = {
-            publisher: {
-                publish: Sinon.fake()
-            }
+            publish: Sinon.fake()
         };
 
         const client = new Client(transport, generator);
 
         await client.publish(stream, streamId, eventType, data);
-        expect(transport.publisher.publish.calledOnce).to.equal(true);
-        expect(transport.publisher.publish.getCall(0).args).to.equal([
+        expect(transport.publish.calledOnce).to.equal(true);
+        expect(transport.publish.getCall(0).args).to.equal([
             stream,
             streamId,
             eventType,
@@ -220,15 +248,13 @@ describe('event sourcing client', () => {
         const eventType = 'chatCreated';
         const data = { key: 'value' };
         const transport = {
-            publisher: {
-                publish: Sinon.fake()
-            }
+            publish: Sinon.fake()
         };
 
         const client = new Client(transport);
 
         await client.publish(stream, streamId, eventType, data);
-        expect(transport.publisher.publish.getCall(0).args[4]).to.match(/[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/);
+        expect(transport.publish.getCall(0).args[4]).to.match(/[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/);
     });
 
     it('should use eventid argument if passed', async () => {
@@ -238,14 +264,12 @@ describe('event sourcing client', () => {
         const eventType = 'chatCreated';
         const data = { key: 'value' };
         const transport = {
-            publisher: {
-                publish: Sinon.fake()
-            }
+            publish: Sinon.fake()
         };
 
         const client = new Client(transport);
 
         await client.publish(stream, streamId, eventType, data, 'passed-id');
-        expect(transport.publisher.publish.getCall(0).args[4]).to.equal('passed-id');
+        expect(transport.publish.getCall(0).args[4]).to.equal('passed-id');
     });
 });
