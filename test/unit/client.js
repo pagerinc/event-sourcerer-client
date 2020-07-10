@@ -29,29 +29,25 @@ describe('event sourcing client', () => {
         const id = 'abc';
         generator.returns(id);
 
-        const transport = new EventsTransport(publisher);
-
-        const sut = Client.default(transport, generator);
+        const sut = Client.default(publisher, generator);
         await sut.publish('stream', 1, 'type', { my: 'data' });
 
         expect(publisher.publish.calledOnce).to.be.true();
         expect(publisher.publish.getCall(0).args).to.equal([
             {
-                asOf: undefined,
-                data: {
-                    my: 'data'
-                },
-                eventId: 'abc',
-                eventType: 'type',
-                stream: 'stream',
-                streamId: 1
+                my: 'data'
             },
             {
-                headers: null,
+                headers: {
+                    asOf: undefined,
+                    eventId: 'abc',
+                    eventType: 'type',
+                    stream: 'stream',
+                    streamId: 1
+                },
                 key: 'stream.type'
             }
-        ]
-        );
+        ]);
     });
 
     it('should setup transport', async () => {
@@ -69,22 +65,18 @@ describe('event sourcing client', () => {
 
         expect(publisher.publish.calledOnce).to.be.true();
         expect(publisher.publish.getCall(0).args).to.equal([
+            { my: 'data' },
             {
-                asOf: undefined,
-                data: {
-                    my: 'data'
-                },
-                eventId: 'abc',
-                eventType: 'type',
-                stream: 'stream',
-                streamId: 1
-            },
-            {
-                headers: null,
-                key: 'stream.type'
+                key: 'stream.type',
+                headers: {
+                    stream: 'stream',
+                    streamId: 1,
+                    eventType: 'type',
+                    eventId: 'abc',
+                    asOf: undefined
+                }
             }
-        ]
-        );
+        ]);
     });
     it('should throw if streamId is set to null', async () => {
 
