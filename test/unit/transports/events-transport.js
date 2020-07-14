@@ -12,20 +12,6 @@ const expect = Code.expect;
 
 describe('events transport', () => {
 
-    const args = [
-        { id: 1 },
-        {
-            key: 'chats.created',
-            headers: {
-                stream: 'chats',
-                streamId: 'xyz',
-                eventType: 'created',
-                eventId: 'my-id',
-                asOf: undefined
-            }
-        }
-    ];
-
     it('should publish to rabbit', async () => {
 
         const publish = Sinon.fake();
@@ -38,6 +24,41 @@ describe('events transport', () => {
         }, 'my-id');
 
         expect(info.calledOnce).to.equal(true);
-        expect(publish.getCall(0).args).to.equal(args);
+        expect(publish.getCall(0).args).to.equal([
+            {
+                id: 1,
+                stream: 'chats',
+                streamId: 'xyz',
+                eventType: 'created',
+                eventId: 'my-id',
+                asOf: undefined
+            },
+            { key: 'chats.created' }
+        ]);
+    });
+
+    it('should include metadata, if provided', async () => {
+
+        const publish = Sinon.fake();
+        const publisher = { publish };
+        const info = Sinon.fake();
+        const transport = new EventsTransport(publisher, { data: 'my metadata' }, { info });
+
+        await transport.publish('chats', 'xyz', 'created', {
+            id: 1
+        }, 'my-id');
+
+        expect(info.calledOnce).to.equal(true);
+        expect(publish.getCall(0).args).to.equal([
+            {
+                id: 1,
+                stream: 'chats',
+                streamId: 'xyz',
+                eventType: 'created',
+                eventId: 'my-id',
+                asOf: undefined
+            },
+            { key: 'chats.created', headers: { data: 'my metadata' } }
+        ] );
     });
 });

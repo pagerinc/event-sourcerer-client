@@ -35,18 +35,14 @@ describe('event sourcing client', () => {
         expect(publisher.publish.calledOnce).to.be.true();
         expect(publisher.publish.getCall(0).args).to.equal([
             {
-                my: 'data'
+                my: 'data',
+                stream: 'stream',
+                streamId: 1,
+                eventType: 'type',
+                eventId: 'abc',
+                asOf: undefined
             },
-            {
-                headers: {
-                    asOf: undefined,
-                    eventId: 'abc',
-                    eventType: 'type',
-                    stream: 'stream',
-                    streamId: 1
-                },
-                key: 'stream.type'
-            }
+            { key: 'stream.type' }
         ]);
     });
 
@@ -65,17 +61,15 @@ describe('event sourcing client', () => {
 
         expect(publisher.publish.calledOnce).to.be.true();
         expect(publisher.publish.getCall(0).args).to.equal([
-            { my: 'data' },
             {
-                key: 'stream.type',
-                headers: {
-                    stream: 'stream',
-                    streamId: 1,
-                    eventType: 'type',
-                    eventId: 'abc',
-                    asOf: undefined
-                }
-            }
+                my: 'data',
+                stream: 'stream',
+                streamId: 1,
+                eventType: 'type',
+                eventId: 'abc',
+                asOf: undefined
+            },
+            { key: 'stream.type' }
         ]);
     });
     it('should throw if streamId is set to null', async () => {
