@@ -9,7 +9,7 @@ const Client = require('../../lib/client');
 const lab = exports.lab = Lab.script();
 const { it, describe } = lab;
 const expect = Code.expect;
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 
 const EventsTransport = require('../../lib/transports/events-transport');
 
