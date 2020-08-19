@@ -14,18 +14,21 @@
     "url": "https://github.com/pagerinc/event-sourcerer-client.git"
   },
   "dependencies": {
-    "@hapi/joi": "17.x",
-    "@pager/logger": "5.x",
-    "uuid": "7.x"
+    "@pager/logger": "^5.8.0",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "@hapi/code": "8.x",
-    "@hapi/lab": "22.x",
+    "@hapi/code": "^8.0.2",
+    "@hapi/lab": "^23.0.0",
     "@pager/semantic-release-config": "1.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x",
+    "joi": "^17.2.1",
     "semantic-release": "17.x",
-    "sinon": "9.x"
+    "sinon": "^9.0.3"
+  },
+  "peerDependencies": {
+    "joi": "^17.2.0"
   },
   "renovate": {
     "extends": [
