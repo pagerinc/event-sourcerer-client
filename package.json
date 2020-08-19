@@ -28,7 +28,7 @@
     "sinon": "^9.0.3"
   },
   "peerDependencies": {
-    "joi": "^17.2.0"
+    "joi": "^17.2.1"
   },
   "renovate": {
     "extends": [
