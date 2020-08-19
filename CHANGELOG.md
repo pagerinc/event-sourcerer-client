@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.4...v5.0.0) (2020-08-19)
+
+
+### Bug Fixes
+
+* update deps, move to joi, use peer dep ([#228](https://github.com/pagerinc/event-sourcerer-client/issues/228)) ([b18a1be](https://github.com/pagerinc/event-sourcerer-client/commit/b18a1be7905538a6ebd67b363bb289fd561c872a))
+
+
+### BREAKING CHANGES
+
+* using joi instead of @hapi/joi
+
 ## [4.0.4](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.3...v4.0.4) (2020-07-10)
 
 
