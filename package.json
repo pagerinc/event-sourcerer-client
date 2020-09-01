@@ -14,7 +14,7 @@
     "url": "https://github.com/pagerinc/event-sourcerer-client.git"
   },
   "dependencies": {
-    "@pager/logger": "^5.8.0",
+    "@pager/logger": "^5.8.2",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
