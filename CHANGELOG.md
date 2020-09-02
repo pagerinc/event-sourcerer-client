@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/pagerinc/event-sourcerer-client/compare/v5.0.0...v5.0.1) (2020-09-02)
+
+
+### Bug Fixes
+
+* remove lab leaks detection ([#246](https://github.com/pagerinc/event-sourcerer-client/issues/246)) ([f59e024](https://github.com/pagerinc/event-sourcerer-client/commit/f59e02499156189dc110225620475515b0d35bfa))
+
 # [5.0.0](https://github.com/pagerinc/event-sourcerer-client/compare/v4.0.4...v5.0.0) (2020-08-19)
 
 
