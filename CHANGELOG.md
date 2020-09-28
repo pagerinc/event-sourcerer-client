@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/pagerinc/event-sourcerer-client/compare/v5.0.1...v5.1.0) (2020-09-28)
+
+
+### Features
+
+* add options map ([#275](https://github.com/pagerinc/event-sourcerer-client/issues/275)) ([dc8e942](https://github.com/pagerinc/event-sourcerer-client/commit/dc8e94203245521a7626a3b6099d9c30e5b16442))
+
 ## [5.0.1](https://github.com/pagerinc/event-sourcerer-client/compare/v5.0.0...v5.0.1) (2020-09-02)
 
 
