@@ -138,11 +138,14 @@ describe('event sourcing client', () => {
 
                 const client = new Client(transport, generator);
 
-                client.addPrePublishValidator(stream, eventType, validJoiSchema);
+                client.addPrePublishValidator(stream, eventType, validJoiSchema, { stripUnknown: true });
 
-                expect(client.validateMap.size).to.equal(1);
-                expect(client.validateMap.get(`${stream}:${eventType}`)).to.not.be.null();
-                expect(Joi.isSchema(client.validateMap.get(`${stream}:${eventType}`))).to.be.true();
+                expect(client.validateSchemaMap.size).to.equal(1);
+                expect(client.validateSchemaMap.get(`${stream}:${eventType}`)).to.not.be.null();
+                expect(Joi.isSchema(client.validateSchemaMap.get(`${stream}:${eventType}`))).to.be.true();
+
+                expect(client.validationOptionsMap.size).to.equal(1);
+                expect(client.validationOptionsMap.get(`${stream}:${eventType}`)).to.equal({ stripUnknown: true });
             });
         });
 
