@@ -144,8 +144,8 @@ describe('event sourcing client', () => {
                 expect(client.validateSchemaMap.get(`${stream}:${eventType}`)).to.not.be.null();
                 expect(Joi.isSchema(client.validateSchemaMap.get(`${stream}:${eventType}`))).to.be.true();
 
-                expect(client.validationOptionsMap.size).to.equal(1);
-                expect(client.validationOptionsMap.get(`${stream}:${eventType}`)).to.equal({ stripUnknown: true });
+                expect(client.validateOptionsMap.size).to.equal(1);
+                expect(client.validateOptionsMap.get(`${stream}:${eventType}`)).to.equal({ stripUnknown: true });
             });
         });
 
