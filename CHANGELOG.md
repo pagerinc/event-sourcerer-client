@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/pagerinc/event-sourcerer-client/compare/v5.1.0...v5.1.1) (2020-09-30)
+
+
+### Bug Fixes
+
+* log error with a human redable string ([#278](https://github.com/pagerinc/event-sourcerer-client/issues/278)) ([1d1cd59](https://github.com/pagerinc/event-sourcerer-client/commit/1d1cd593ba76e112b426ef249d20b953a87a8a14))
+
 # [5.1.0](https://github.com/pagerinc/event-sourcerer-client/compare/v5.0.1...v5.1.0) (2020-09-28)
 
 
