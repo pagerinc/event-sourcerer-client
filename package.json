@@ -25,7 +25,7 @@
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x",
     "joi": "^17.2.1",
-    "semantic-release": "17.x",
+    "semantic-release": "19.x",
     "sinon": "^9.0.3"
   },
   "peerDependencies": {
