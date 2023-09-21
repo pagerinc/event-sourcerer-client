@@ -1,5 +1,6 @@
 {
   "name": "@pager/event-sourcerer-client",
+  "private": true,
   "version": "5.1.1",
   "description": "event-sourcerer client",
   "main": "lib/index.js",
